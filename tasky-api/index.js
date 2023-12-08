@@ -7,6 +7,8 @@ dotenv.config();
 const app = express();
 const port = process.env.port;
 
+app.use(express.json());
+
 app.use('/api/tasks', tasksRouter);
 
 app.listen(port, () => {
