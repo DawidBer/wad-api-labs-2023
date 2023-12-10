@@ -7,4 +7,11 @@ const UserSchema = new Schema({
     password: {type: String, required: true}
 });
 
+const passwordValidator = (pass) => { 
+   const passwordChars = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+   return passwordChars.test(pass);
+};
+
+UserSchema.path("password").validate(passwordValidator);
+
 export default mongoose.model('User', UserSchema);
